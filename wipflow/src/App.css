@@ -1,0 +1,154 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-size: 20px;
+  font-family: "Itim", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+:root {
+  /* --color--primary: #b983ff;
+  --color--secondary: #ff8acd;
+  --color--third: #fef3ea; */
+  /* a979d1 */
+
+  --color--background: #8cf0fe;
+  --color--primary: #B983FF;
+  --color--secondary: #FF9800;
+  --color--card--first: #78f6b1;
+  --color--border: #000000;
+}
+
+button {
+  border: 2px solid var(--color--border); /* Utilisez votre couleur primaire pour la bordure */
+  padding: 0.5rem 1rem; /* Ajoutez un peu de rembourrage intérieur */
+  font-weight: bold; /* Rendez le texte un peu plus épais */
+  text-align: center; /* Centrez le texte */
+  cursor: pointer; /* Indique que c'est un élément interactif */
+  /* La couleur de fond sera gérée par le style en ligne */
+  color: var(--color--border); /* Couleur du texte, adaptez selon le contraste avec la couleur de fond dynamique */
+  transition: all 0.2s ease-in-out; /* Ajoutez une transition pour les effets au survol */
+  box-shadow: none; /* Supprimez les ombres par défaut */
+  outline: none; /* Supprimez la bordure de focus par défaut, stylisez-la si nécessaire pour l'accessibilité */
+  margin: 0.25rem; /* Ajoutez une petite marge autour du bouton */
+}
+
+/* Effet au survol (facultatif mais courant en neubrutalisme) */
+button:hover {
+  background-color: var(--color--primary); /* Inversez la couleur de fond et le texte au survol */
+  color: var(--color--third); /* Utilisez votre couleur tertiaire pour le texte au survol */
+  border-color: var(--color--primary); /* Gardez la même couleur de bordure ou ajustez */
+}
+
+.create-button {
+  width: 50%;
+}
+
+.box-design {
+  border: 2px solid  var(--color--border);
+  border-radius: 3px;
+  box-shadow: 10px 8px var(--color--border);
+}
+
+body {
+  background-color: var(--color--background);
+}
+
+header {
+  background-color: var(--color--primary);
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  border-bottom: 2px solid var(--color--border);
+}
+
+nav {
+  width: 50%;
+  display: flex;
+  align-items: center;
+}
+
+ul {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+li {
+  display: flex;
+  justify-content: right;
+  width: 100%;
+  list-style-type: none;
+}
+
+span {
+  background-color: white;
+  padding: 0.2rem 0.4rem;
+}
+
+input {
+  padding-left: 0.5em;
+  height: 1.8rem;
+  margin-right: 1rem;
+}
+
+::placeholder {
+  color: black;
+}
+
+#logo-container {
+  width: 50%;
+}
+
+#logo-container img {
+  width: 15%;
+}
+
+main {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin: 2em 2rem 0 2rem;
+}
+
+.element-container {
+  width: 23%;
+  display: flex;
+  flex-direction: column;
+}
+
+.list-container {
+  display: flex;
+  justify-content: space-between;
+  border: 3px solid var(--color--border);
+  display: flex;
+  justify-content: space-between;
+  max-width: 400px;
+  padding: 1rem 0.5rem;
+  background-color: var(--color--primary);
+  margin-bottom: 1rem;
+}
+
+.icon {
+  width: 25px;
+}
+
+.plus-icon {
+  cursor: pointer;
+}
+
+.card-block {
+  margin-bottom: 2rem;
+  background-color: var(--color--primary);
+}
+
+.card-container button {
+  text-align: left;
+  width: 96%;
+  padding: 0.7rem 0.5rem;
+}
