@@ -9,7 +9,6 @@ export interface ICardsProps {
 }
 
 export function Card({card}: ICardProps) {
-  console.log(card);
   return (
     <>
         <button style={{ backgroundColor: card.color }}>{card.content}</button>

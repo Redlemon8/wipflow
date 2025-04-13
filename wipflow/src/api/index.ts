@@ -5,7 +5,6 @@ export async function getLits(): Promise<IList[]> {
     const result = await fetch("http://localhost:3000/lists")
     if (result.ok && result.status === 200) {
       const lists = await result.json();
-      console.log(lists);
       return lists
     }
 

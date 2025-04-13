@@ -4,10 +4,14 @@ import crayon from "../assets/crayon.png"
 
 interface ListProps {
   list: IList;
+  onClick?: (id: number) => void;
+  onSubmit?: (title: string) => void;
 }
 
 export interface ListsProps {
   lists: IList[];
+  onClick?: (id: number) => void;
+  onSubmit?: (title: string) => void;
 }
 
 function List({list}: ListProps) {
@@ -19,7 +23,7 @@ function List({list}: ListProps) {
       </section>
       <section className="card-block box-design">
         <div className="card-container">
-          {list.cards.map((card) => (
+          {list.cards && list.cards.map((card) => (
             <Card key={card.id} card={card} />
           ))}
         </div>

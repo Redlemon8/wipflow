@@ -3,13 +3,21 @@ import './App.css'
 import { Lists } from './components/List'
 import { IList } from './@types'
 import { addListIntoApi, getLits } from './api';
-import plus from "./assets/plus.png";
+import { AddListInput } from './components/AddListInput';
 
 function App() {
 
   const [lists, setLists] = useState<IList[]>([]);
 
-  const addList = async(title: string): Promise<void> => {
+  // const addList = async(title: string): Promise<void> => {
+  //   const newList = await addListIntoApi(title)
+  //   if (newList) {
+  //     const newLists = [...lists, newList]
+  //     setLists(newLists)
+  //   }
+  // }
+
+  const handleAddList = async(title: string): Promise<void> => {
     const newList = await addListIntoApi(title)
     if (newList) {
       const newLists = [...lists, newList]
@@ -21,7 +29,12 @@ function App() {
     console.log("Chargement des données...");
     const loadData = async () => {
       const newLists = await getLits();
-      setLists(newLists);
+
+      const listsWithCards = newLists.map(list => ({
+        ...list,
+        cards: list.cards || []
+      }));
+      setLists(listsWithCards);
     };
     loadData();
   }, []);
@@ -44,9 +57,7 @@ function App() {
         <Lists lists={lists} />
         <section className='element-container'>
           <section className='list-container box-design'>
-            
-            <div>Ajouter uen liste</div>
-            <img className="icon plus-icon" src={plus} alt= "Icon pour créer une liste"/>
+            <AddListInput onSubmit={handleAddList}/>
           </section>
         </section>
     </main>

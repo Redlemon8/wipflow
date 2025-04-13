@@ -21,24 +21,24 @@
 }
 
 button {
-  border: 2px solid var(--color--border); /* Utilisez votre couleur primaire pour la bordure */
-  padding: 0.5rem 1rem; /* Ajoutez un peu de rembourrage intérieur */
-  font-weight: bold; /* Rendez le texte un peu plus épais */
-  text-align: center; /* Centrez le texte */
-  cursor: pointer; /* Indique que c'est un élément interactif */
-  /* La couleur de fond sera gérée par le style en ligne */
-  color: var(--color--border); /* Couleur du texte, adaptez selon le contraste avec la couleur de fond dynamique */
-  transition: all 0.2s ease-in-out; /* Ajoutez une transition pour les effets au survol */
-  box-shadow: none; /* Supprimez les ombres par défaut */
-  outline: none; /* Supprimez la bordure de focus par défaut, stylisez-la si nécessaire pour l'accessibilité */
-  margin: 0.25rem; /* Ajoutez une petite marge autour du bouton */
+  border: 2px solid var(--color--border);
+  padding: 0.5rem 1rem;
+  font-weight: bold;
+  text-align: center;
+  cursor: pointer;
+  
+  color: var(--color--border); 
+  transition: all 0.2s ease-in-out; 
+  box-shadow: none;
+  outline: none; 
+  margin: 0.25rem; 
+  background-color: #FF9800;
 }
 
-/* Effet au survol (facultatif mais courant en neubrutalisme) */
 button:hover {
-  background-color: var(--color--primary); /* Inversez la couleur de fond et le texte au survol */
-  color: var(--color--third); /* Utilisez votre couleur tertiaire pour le texte au survol */
-  border-color: var(--color--primary); /* Gardez la même couleur de bordure ou ajustez */
+  background-color: var(--color--primary); 
+  color: var(--color--third);
+  border-color: var(--color--primary); 
 }
 
 .create-button {
@@ -118,6 +118,7 @@ main {
 
 .element-container {
   width: 23%;
+  max-width: 370px;
   display: flex;
   flex-direction: column;
 }
@@ -128,7 +129,6 @@ main {
   border: 3px solid var(--color--border);
   display: flex;
   justify-content: space-between;
-  max-width: 400px;
   padding: 1rem 0.5rem;
   background-color: var(--color--primary);
   margin-bottom: 1rem;
@@ -140,6 +140,13 @@ main {
 
 .plus-icon {
   cursor: pointer;
+}
+
+.icon-button {
+  height: 25px;
+  padding: 0;
+  margin: 0;
+  border: none;
 }
 
 .card-block {
