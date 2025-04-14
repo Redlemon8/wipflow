@@ -22,7 +22,6 @@
 
 button {
   border: 2px solid var(--color--border);
-  padding: 0.5rem 1rem;
   font-weight: bold;
   text-align: center;
   cursor: pointer;
@@ -119,6 +118,7 @@ main {
 .element-container {
   width: 23%;
   max-width: 370px;
+  min-width: 290px;
   display: flex;
   flex-direction: column;
 }
@@ -127,8 +127,6 @@ main {
   display: flex;
   justify-content: space-between;
   border: 3px solid var(--color--border);
-  display: flex;
-  justify-content: space-between;
   padding: 1rem 0.5rem;
   background-color: var(--color--primary);
   margin-bottom: 1rem;
@@ -149,13 +147,30 @@ main {
   border: none;
 }
 
+.edit-input {
+  min-width: 170px;
+  max-width: 320px;
+}
+
 .card-block {
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   background-color: var(--color--primary);
 }
 
 .card-container button {
+  width: 96%;
+  padding: 0.6rem 0.2rem;
+  text-align: left;
+}
+
+.add-card-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 0.5rem;
+}
+
+
+/* .card-container button {
   text-align: left;
   width: 96%;
-  padding: 0.7rem 0.5rem;
-}
+} */

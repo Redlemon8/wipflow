@@ -1,4 +1,4 @@
-import type { IList } from "../@types";
+import type { ICard, IList } from "../@types";
 
 export async function getLits(): Promise<IList[]> {
   try {
@@ -34,6 +34,32 @@ export async function addListIntoApi(title: string): Promise<null | IList> {
     return null
   } catch (error) {
     console.error("erreur lors de la création de la liste", error)
+    return null
+  }
+}
+
+export async function addCardIntoApi(content: string, list_id: number): Promise<null | ICard> {
+
+  try {
+    const data = {content, list_id}
+
+    const result = await fetch("http://localhost:3000/cards", {
+      method: "post",
+      headers: { 'content-type': 'application/json'},
+      body: JSON.stringify(data)
+    })
+
+    console.log(result);
+
+    if (result.ok) {
+      const newCard: ICard = await result.json()
+      console.log(newCard);
+      return newCard
+    }
+
+    return null
+  } catch (error) {
+    console.error("erreur lors de la création de la carte", error)
     return null
   }
 }

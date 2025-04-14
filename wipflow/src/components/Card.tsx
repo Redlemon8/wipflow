@@ -8,6 +8,7 @@ export interface ICardsProps {
   cards: ICard[];
 }
 
+
 export function Card({card}: ICardProps) {
   return (
     <>
