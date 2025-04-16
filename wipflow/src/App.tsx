@@ -1,21 +1,20 @@
 
-import { EditableItem } from './components/EditableItem';
+import { InputBehaviour } from './components/InputBehaviour';
 import { Lists } from './components/DisplayListAndCo';
 import './App.css';
 import { useListsAndCards } from './components/useListsCardsAndTags';
 import { Header } from './components/Header';
 
 function App() {
-  const { lists, handleAddList, handleAddCard } = useListsAndCards();
-
+  const { lists, handleAddList, handleAddCard, updateList } = useListsAndCards();
   return (
     <>
-      <Header />
-      <main>
-        <Lists lists={lists} onAddCard={handleAddCard} />
+      <Header/>
+      <main className="background-image">
+        <Lists lists={lists} onAddCard={handleAddCard} onUpdateList={updateList}/>
         <section className='element-container'>
           <section className='list-container box-design'>
-            <EditableItem
+            <InputBehaviour
               defaultValue="Ajouter une liste"
               onSubmit={handleAddList}
               showIcon={true}

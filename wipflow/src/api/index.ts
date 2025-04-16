@@ -63,3 +63,31 @@ export async function addCardIntoApi(content: string, list_id: number): Promise<
     return null
   }
 }
+
+export async function updateListIntoApi(title: string, id: number): Promise<null | IList > {
+  
+  try {
+
+    const data = {title}
+
+    const result = await fetch(`http://localhost:3000/lists/${id}`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+
+    console.log(`resulat api ${result}`)
+    console.log(`resulat api ${data}`)
+
+    if (result.ok) {
+      const updateList = await result.json();
+      return updateList;
+    }
+
+    console.error("Erreur API:", result.status, result.statusText);
+    return null;
+  } catch (error) {
+    console.error("Erreur lors de la mise à jour de la list", error);
+    return null;
+  }
+}

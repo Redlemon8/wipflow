@@ -12,7 +12,7 @@ export interface ICardsProps {
 export function Card({card}: ICardProps) {
   return (
     <>
-        <button style={{ backgroundColor: card.color }}>{card.content}</button>
+      <button style={{ backgroundColor: card.color }}>{card.content}</button>
     </>
   )
 }

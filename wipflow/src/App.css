@@ -20,24 +20,39 @@
   --color--border: #000000;
 }
 
+main {
+  height: 80vh;
+  position: relative
+}
+.background-image {
+  background-image: url(./assets/background-wipflow.jpg);
+  position: absolute;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  width: 96%;
+  z-index: -1000;
+}
+
+/* main {
+  height: 30rem;
+  background-size: contain;
+  margin: auto;
+  background-image: url(./assets/background-wipflow.jpg);
+  background-repeat: no-repeat;
+} */
+
 button {
   border: 2px solid var(--color--border);
   font-weight: bold;
-  text-align: center;
   cursor: pointer;
-  
-  color: var(--color--border); 
   transition: all 0.2s ease-in-out; 
-  box-shadow: none;
-  outline: none; 
   margin: 0.25rem; 
-  background-color: #FF9800;
+  background-color: #028bfb;
 }
 
 button:hover {
-  background-color: var(--color--primary); 
-  color: var(--color--third);
-  border-color: var(--color--primary); 
+  background-color: var(--color--primary);
 }
 
 .create-button {
