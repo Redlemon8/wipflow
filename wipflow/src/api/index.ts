@@ -15,10 +15,10 @@ export async function getLits(): Promise<IList[]> {
   }
 }
 
-export async function addListIntoApi(title: string): Promise<null | IList> {
+export async function addListIntoApi(title: string, position: number): Promise<null | IList> {
 
   try {
-    const data = {title}
+    const data = {title, position}
 
     const result = await fetch("http://localhost:3000/lists", {
       method: "post",
@@ -76,9 +76,6 @@ export async function updateListIntoApi(title: string, id: number): Promise<null
       body: JSON.stringify(data)
     });
 
-    console.log(`resulat api ${result}`)
-    console.log(`resulat api ${data}`)
-
     if (result.ok) {
       const updateList = await result.json();
       return updateList;
@@ -89,5 +86,20 @@ export async function updateListIntoApi(title: string, id: number): Promise<null
   } catch (error) {
     console.error("Erreur lors de la mise à jour de la list", error);
     return null;
+  }
+}
+
+export async function deleteListIntoApi(list: IList): Promise<boolean> {
+  
+  try {
+    console.log(`call list ${list.id} to be delete`);
+    const result = await fetch(`http://localhost:3000/lists/${list.id}`, {
+      method: 'DELETE'
+    });
+
+    return result.ok
+  } catch (error) {
+    console.error("Erreur lors de la mise à jour de la list", error);
+    return false;
   }
 }

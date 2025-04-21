@@ -1,28 +1,32 @@
 import type { IList } from "../@types";
 import { Card } from "./Card";
 import { InputBehaviour } from "./InputBehaviour";
+import Delete from "../assets/delete.png";
+
 
 interface ListProps {
   list: IList;
-  onAddCard: (content: string, list_id: number) => Promise<void>;
+  onAddCard: (content: string, list_id: number, position: number) => Promise<void>;
   onUpdateList: (title: string, id: number) => Promise<void>;
+  onDeleteList: (id: number) => Promise<void>;
 }
 
 export interface ListsProps {
   lists: IList[];
-  onAddCard: (content: string, list_id: number) => Promise<void>;
+  onAddCard: (content: string, list_id: number, position: number) => Promise<void>;
   onUpdateList: (title: string, id: number) => Promise<void>;
+  onDeleteList: (id: number) => Promise<void>;
 }
 
 // DISPLAY LIST WITH CARDS AND TAGS
-function List({ list, onAddCard, onUpdateList }: ListProps) {
+function List({ list, onAddCard, onUpdateList, onDeleteList }: ListProps) {
   const hasCards = list.cards && list.cards.length > 0;
 
   return (
     <section className='element-container'>
       {/* LIST STRUCTURE */}
       <section className='list-container box-design'>
-        {/* <div>{list.title}</div> */}
+        <div className="display-list-items">
         <InputBehaviour
           defaultValue={list.title}
           onSubmit={(newTitle) => onUpdateList(newTitle, list.id)}
@@ -31,6 +35,10 @@ function List({ list, onAddCard, onUpdateList }: ListProps) {
           inputClassName="list-title-input"
           isEditing={false}
         />
+        </div>
+        <button type="button" onClick={() => onDeleteList(list.id)}>
+        <img className="icon plus-icon" src={Delete} alt="boutton de suppréssion d'une liste" />
+        </button>
       </section>
       
       {/* CARD STRUCTURE */}
@@ -49,7 +57,7 @@ function List({ list, onAddCard, onUpdateList }: ListProps) {
         <div className="add-card-container">
           <InputBehaviour
             defaultValue="Ajouter une carte"
-            onSubmit={(cardTitle) => onAddCard(cardTitle, list.id)}
+            onSubmit={(cardTitle) => onAddCard(cardTitle, list.id, list.position)}
             inputClassName="card-input"
             buttonClassName="icon icon-button plus-icon"
             showIcon={true}
@@ -62,11 +70,11 @@ function List({ list, onAddCard, onUpdateList }: ListProps) {
 }
 
 // LOOP ALL LISTS WITH THEIR CARDS AND TAGS
-export function Lists({ lists, onAddCard, onUpdateList }: ListsProps) {
+export function Lists({ lists, onAddCard, onUpdateList, onDeleteList }: ListsProps) {
   return (
     <>
       {lists.map((list) => (
-        <List key={list.id} list={list} onAddCard={onAddCard} onUpdateList={onUpdateList} />
+        <List key={list.id} list={list} onAddCard={onAddCard} onUpdateList={onUpdateList} onDeleteList={onDeleteList} />
       ))}
     </>
   );

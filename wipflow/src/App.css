@@ -43,12 +43,12 @@ main {
 } */
 
 button {
-  border: 2px solid var(--color--border);
+  border: none;
   font-weight: bold;
   cursor: pointer;
   transition: all 0.2s ease-in-out; 
   margin: 0.25rem; 
-  background-color: #028bfb;
+  background-color: transparent;
 }
 
 button:hover {
@@ -141,6 +141,7 @@ main {
 .list-container {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   border: 3px solid var(--color--border);
   padding: 1rem 0.5rem;
   background-color: var(--color--primary);
@@ -165,6 +166,13 @@ main {
 .edit-input {
   min-width: 170px;
   max-width: 320px;
+}
+
+.display-list-items {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
 }
 
 .card-block {

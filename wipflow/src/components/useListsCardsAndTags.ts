@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { IList } from '../@types';
-import { addListIntoApi, addCardIntoApi, getLits, updateListIntoApi } from '../api';
+import { addListIntoApi, addCardIntoApi, getLits, updateListIntoApi, deleteListIntoApi } from '../api';
 
 export function useListsAndCards() {
   const [lists, setLists] = useState<IList[]>([]);
@@ -8,7 +8,8 @@ export function useListsAndCards() {
   useEffect(() => {
     const loadData = async () => {
       const newLists = await getLits();
-      const listsWithCards = newLists.map(list => ({
+      const listsWithCards = newLists.map(list => (
+        {
         ...list,
         cards: list.cards || []
       }));
@@ -19,7 +20,10 @@ export function useListsAndCards() {
 
   // ADD LISTS
   const handleAddList = async (title: string): Promise<void> => {
-    const newList = await addListIntoApi(title);
+    const position = lists.length + 1
+    console.log(position)
+    console.log(title);
+    const newList = await addListIntoApi(title, position);
     if (newList) {
       const listWithCards = {
         ...newList,
@@ -48,12 +52,12 @@ export function useListsAndCards() {
   };
 
   // UPDATE LISTS
-  const updateList = async (newTitle: string, id: number): Promise<void> => {
-
+  const handleUpdateList = async (newTitle: string, id: number): Promise<void> => {
     const listToUpdate = lists.find(list => list.id);
     if (!listToUpdate) return;
 
     try {
+
       const result = await updateListIntoApi(newTitle, listToUpdate.id);
       console.log(result);
       if (result) {
@@ -64,8 +68,24 @@ export function useListsAndCards() {
     } catch (error) {
       console.error("Erreur lors de la mise à jour de la liste", error);
     }
+  }
+
+   // DELETE LISTS
+   const handleDeleteList = async (id: number): Promise<void> => {
+    const listToDelete = lists.find(list => list.id === id);
+    if (!listToDelete) return;
+   
+    try {
+      const result = await deleteListIntoApi(listToDelete);
+      if (result) {
+        setLists(lists.filter(list => list.id !== id));
+      }
+
+    } catch (error) {
+      console.error("Erreur lors de la suppréssion de la liste", error);
+    }
 
   }
 
-  return { lists, handleAddList, handleAddCard, updateList };
+  return { lists, handleAddList, handleAddCard, handleUpdateList, handleDeleteList };
 }
