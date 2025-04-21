@@ -44,9 +44,9 @@ function List({ list, onAddCard, onUpdateList, onDeleteList }: ListProps) {
       {/* CARD STRUCTURE */}
       {hasCards && (
         <section className="card-block box-design">
-          <section className="card-container box-design">
+          <section className="box-design">
             {list.cards.map((card) => (
-              <Card key={card.id} card={card} />
+              <Card key={card.id} card={card}/>
             ))}
           </section>
         </section>

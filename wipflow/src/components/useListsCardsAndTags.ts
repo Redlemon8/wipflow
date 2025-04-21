@@ -21,8 +21,6 @@ export function useListsAndCards() {
   // ADD LISTS
   const handleAddList = async (title: string): Promise<void> => {
     const position = lists.length + 1
-    console.log(position)
-    console.log(title);
     const newList = await addListIntoApi(title, position);
     if (newList) {
       const listWithCards = {
@@ -59,7 +57,6 @@ export function useListsAndCards() {
     try {
 
       const result = await updateListIntoApi(newTitle, listToUpdate.id);
-      console.log(result);
       if (result) {
         setLists(lists.map(list =>
           list.id === id ? { ...list, title: newTitle } : list

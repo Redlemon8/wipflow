@@ -8,11 +8,6 @@
 }
 
 :root {
-  /* --color--primary: #b983ff;
-  --color--secondary: #ff8acd;
-  --color--third: #fef3ea; */
-  /* a979d1 */
-
   --color--background: #8cf0fe;
   --color--primary: #B983FF;
   --color--secondary: #FF9800;
@@ -33,14 +28,6 @@ main {
   width: 96%;
   z-index: -1000;
 }
-
-/* main {
-  height: 30rem;
-  background-size: contain;
-  margin: auto;
-  background-image: url(./assets/background-wipflow.jpg);
-  background-repeat: no-repeat;
-} */
 
 button {
   border: none;
@@ -180,10 +167,22 @@ main {
   background-color: var(--color--primary);
 }
 
-.card-container button {
-  width: 96%;
-  padding: 0.6rem 0.2rem;
+.card-container {
+  width: 98%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.card-container button{
+  width: 85%;
   text-align: left;
+  padding: 0.6rem 0.2rem;
+}
+
+.card-container span {
+  padding: 0.6rem 0.4rem;
+  cursor: pointer;
 }
 
 .add-card-container {
@@ -192,8 +191,39 @@ main {
   padding: 1rem 0.5rem;
 }
 
+.card-modal {
+  background-color: var(--color--primary);
+  position: absolute;
+  padding: 1.5rem 2rem 2rem 2rem;
+  width: 30%;
+  left: 40%;
+  top: 15%;
+}
 
-/* .card-container button {
-  text-align: left;
-  width: 96%;
-} */
+.card-modal-detail {
+  padding: 1rem 0.5rem;
+}
+
+.card-modal-details {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 1rem;
+}
+
+.close-modal {
+  padding: 0.5rem;
+  color: white;
+  background-color: #ff2600;
+}
+
+.card-modal-info {
+  margin-bottom: 1rem;
+}
+
+.title-modal-card {
+  width: 70%;
+  background-color: #FFF;
+  padding: 0.6rem 0.5rem;
+}

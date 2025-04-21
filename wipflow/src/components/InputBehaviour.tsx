@@ -23,7 +23,6 @@ export function InputBehaviour({
 }: InputBehaviourProps) {
   const [editMode, setEditMode] = useState(false);
   const [updateMode, setUpdateMode] = useState(false);
-  // const [deleteMode, setDeleteMode] = useState(false);
   const [inputValue, setInputValue] = useState(defaultValue || placeholder);
 
   //EDIT USEEFFECT 
