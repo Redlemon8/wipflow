@@ -1,21 +1,25 @@
 import { MouseEvent, useState } from "react";
 import type { ICard } from "../@types";
+import { InputBehaviour } from "./InputBehaviour";
 
 interface ICardModalProps {
   card: ICard;
   onClose: () => void;
+  onUpdateCard: (id: number, content: string, color: string) => Promise<void>;
 }
 
 
 export interface ICardProps {
   card: ICard;
+  onUpdateCard: (id: number, content: string, color: string) => Promise<void>;
 }
 
 export interface ICardsProps {
   cards: ICard[];
+  onUpdateCard: (id: number, content: string, color: string) => Promise<void>;
 }
 
-export function CardModal ({card, onClose}: ICardModalProps) {
+export function CardModal ({card, onClose, onUpdateCard}: ICardModalProps) {
   return (
     <>
       <div className="card-modal box-design">
@@ -24,8 +28,28 @@ export function CardModal ({card, onClose}: ICardModalProps) {
         <button className=" box-design close-modal" onClick={onClose}>X</button>
         </div>
         <div className="box-design card-modal-info">
-          <p className="card-modal-detail" style={{ backgroundColor: card.color }}>Titre : {card.content}</p>
-          <p className="card-modal-detail" style={{ backgroundColor: card.color }}>Color : {card.color}</p>
+          <div style={{ backgroundColor: card.color }} className="modal-update-input">
+            <InputBehaviour
+                      defaultValue={card.content}
+                      onSubmit={(newContent) => onUpdateCard(card.id, newContent, card.color)}
+                      showIcon={true}
+                      buttonClassName="icon-button"
+                      inputClassName="list-title-input"
+                      isEditing={false}
+                    />
+            {/* <p className="card-modal-detail">Titre : {card.content}</p>
+            <img className="icon plus-icon" src={Crayon} alt="boutton de modification d'une carte" /> */}
+          </div>
+          <div style={{ backgroundColor: card.color }} className="modal-update-input">
+          <InputBehaviour
+                      defaultValue={card.color}
+                      onSubmit={(newColor) => onUpdateCard(card.id, card.content, newColor)}
+                      showIcon={true}
+                      buttonClassName="icon-button"
+                      inputClassName="list-title-input"
+                      isEditing={false}
+                    />
+          </div>
         </div>
         <button className=" box-design close-modal" onClick={onClose}>Fermer</button>
       </div>
@@ -34,7 +58,7 @@ export function CardModal ({card, onClose}: ICardModalProps) {
 }
 
 
-export function Card({card}: ICardProps) {
+export function Card({card, onUpdateCard}: ICardProps) {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -53,16 +77,16 @@ export function Card({card}: ICardProps) {
       <button style={{ backgroundColor: card.color }}>{card.content}</button>
       <span onClick={openModal}>...</span>
     </div>
-    {isModalOpen && <CardModal card={card} onClose={closeModal} />}
+    {isModalOpen && <CardModal card={card} onClose={closeModal} onUpdateCard={onUpdateCard} />}
   </>
   )
 }
 
-export function Cards({cards}: ICardsProps) {
+export function Cards({cards, onUpdateCard}: ICardsProps) {
   return (
     <>
       {cards.map((card) => {
-        return <Card key={card.id} card={card} />
+        return <Card key={card.id} card={card} onUpdateCard={onUpdateCard}/>
       })}
     </>
   )

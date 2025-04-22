@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { IList } from '../@types';
-import { addListIntoApi, addCardIntoApi, getLits, updateListIntoApi, deleteListIntoApi } from '../api';
+import { addListIntoApi, addCardIntoApi, getLits, updateListIntoApi, deleteListIntoApi, updateCardIntoApi } from '../api';
 
 export function useListsAndCards() {
   const [lists, setLists] = useState<IList[]>([]);
@@ -33,6 +33,7 @@ export function useListsAndCards() {
 
   // ADD CARDS
   const handleAddCard = async (content: string, list_id: number): Promise<void> => {
+
     const newCard = await addCardIntoApi(content, list_id);
     if (newCard) {
       setLists(prevLists => {
@@ -84,5 +85,27 @@ export function useListsAndCards() {
 
   }
 
-  return { lists, handleAddList, handleAddCard, handleUpdateList, handleDeleteList };
+  const handleUpdateCard = async (id: number, newContent: string, newColor: string): Promise<void> => {
+    try {
+
+      const result = await updateCardIntoApi(id, newContent, newColor);
+
+      if (result) {
+        setLists(prevLists =>
+          prevLists.map(list => ({
+            ...list,
+            cards: list.cards.map(card => 
+              card.id === id 
+                ? { ...card, content: newContent, color: newColor } 
+                : card
+            )
+          }))
+        );
+      }
+    } catch (error) {
+      console.error("Erreur lors de la mise à jour de la carte", error);
+    }
+  }
+
+  return { lists, handleAddList, handleAddCard, handleUpdateList, handleDeleteList, handleUpdateCard };
 }

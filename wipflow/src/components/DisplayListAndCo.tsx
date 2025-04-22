@@ -9,6 +9,7 @@ interface ListProps {
   onAddCard: (content: string, list_id: number, position: number) => Promise<void>;
   onUpdateList: (title: string, id: number) => Promise<void>;
   onDeleteList: (id: number) => Promise<void>;
+  onUpdateCard: (id: number, content: string, color: string) => Promise<void>;
 }
 
 export interface ListsProps {
@@ -16,10 +17,11 @@ export interface ListsProps {
   onAddCard: (content: string, list_id: number, position: number) => Promise<void>;
   onUpdateList: (title: string, id: number) => Promise<void>;
   onDeleteList: (id: number) => Promise<void>;
+  onUpdateCard: (id: number, content: string, color: string) => Promise<void>;
 }
 
 // DISPLAY LIST WITH CARDS AND TAGS
-function List({ list, onAddCard, onUpdateList, onDeleteList }: ListProps) {
+function List({ list, onAddCard, onUpdateList, onDeleteList, onUpdateCard }: ListProps) {
   const hasCards = list.cards && list.cards.length > 0;
 
   return (
@@ -46,7 +48,7 @@ function List({ list, onAddCard, onUpdateList, onDeleteList }: ListProps) {
         <section className="card-block box-design">
           <section className="box-design">
             {list.cards.map((card) => (
-              <Card key={card.id} card={card}/>
+              <Card key={card.id} card={card} onUpdateCard={onUpdateCard}/>
             ))}
           </section>
         </section>
@@ -70,11 +72,11 @@ function List({ list, onAddCard, onUpdateList, onDeleteList }: ListProps) {
 }
 
 // LOOP ALL LISTS WITH THEIR CARDS AND TAGS
-export function Lists({ lists, onAddCard, onUpdateList, onDeleteList }: ListsProps) {
+export function Lists({ lists, onAddCard, onUpdateList, onDeleteList, onUpdateCard }: ListsProps) {
   return (
     <>
       {lists.map((list) => (
-        <List key={list.id} list={list} onAddCard={onAddCard} onUpdateList={onUpdateList} onDeleteList={onDeleteList} />
+        <List key={list.id} list={list} onAddCard={onAddCard} onUpdateList={onUpdateList} onDeleteList={onDeleteList} onUpdateCard={onUpdateCard}/>
       ))}
     </>
   );

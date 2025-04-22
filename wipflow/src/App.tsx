@@ -6,12 +6,12 @@ import { useListsAndCards } from './components/useListsCardsAndTags';
 import { Header } from './components/Header';
 
 function App() {
-  const { lists, handleAddList, handleAddCard, handleUpdateList, handleDeleteList } = useListsAndCards();
+  const { lists, handleAddList, handleAddCard, handleUpdateList, handleDeleteList, handleUpdateCard} = useListsAndCards();
   return (
     <>
       <Header/>
       <main className="background-image">
-        <Lists lists={lists} onAddCard={handleAddCard} onUpdateList={handleUpdateList} onDeleteList={handleDeleteList}/>
+        <Lists lists={lists} onAddCard={handleAddCard} onUpdateList={handleUpdateList} onDeleteList={handleDeleteList} onUpdateCard={handleUpdateCard}/>
         <section className='element-container'>
           <section className='list-container box-design'>
             <InputBehaviour

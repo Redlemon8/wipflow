@@ -103,3 +103,27 @@ export async function deleteListIntoApi(list: IList): Promise<boolean> {
     return false;
   }
 }
+
+export async function updateCardIntoApi(id: number, content: string, color: string): Promise<null | ICard > {
+  try {
+
+    const data = {content, color}
+    console.log(data);
+    const result = await fetch(`http://localhost:3000/cards/${id}`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+
+    if (result.ok) {
+      const updateCard = await result.json();
+      return updateCard;
+    }
+
+    console.error("Erreur API:", result.status, result.statusText);
+    return null;
+  } catch (error) {
+    console.error("Erreur lors de la mise à jour de la carte", error);
+    return null;
+  }
+}
