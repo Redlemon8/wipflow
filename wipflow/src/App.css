@@ -1,0 +1,236 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-size: 20px;
+  font-family: "Itim", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+:root {
+  --color--background: #8cf0fe;
+  --color--primary: #B983FF;
+  --color--secondary: #FF9800;
+  --color--card--first: #78f6b1;
+  --color--border: #000000;
+}
+
+main {
+  height: 80vh;
+  position: relative
+}
+.background-image {
+  background-image: url(./assets/background-wipflow.jpg);
+  position: absolute;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  width: 96%;
+  z-index: -1000;
+}
+
+button {
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out; 
+  margin: 0.25rem; 
+  background-color: transparent;
+}
+
+button:hover {
+  background-color: var(--color--primary);
+}
+
+.create-button {
+  width: 50%;
+}
+
+.box-design {
+  border: 2px solid  var(--color--border);
+  border-radius: 3px;
+  box-shadow: 10px 8px var(--color--border);
+}
+
+body {
+  background-color: var(--color--background);
+}
+
+header {
+  background-color: var(--color--primary);
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  border-bottom: 2px solid var(--color--border);
+}
+
+nav {
+  width: 50%;
+  display: flex;
+  align-items: center;
+}
+
+ul {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+li {
+  display: flex;
+  justify-content: right;
+  width: 100%;
+  list-style-type: none;
+}
+
+span {
+  background-color: white;
+  padding: 0.2rem 0.4rem;
+}
+
+input {
+  padding-left: 0.5em;
+  height: 1.8rem;
+  margin-right: 1rem;
+}
+
+::placeholder {
+  color: black;
+}
+
+#logo-container {
+  width: 50%;
+}
+
+#logo-container img {
+  width: 15%;
+}
+
+main {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin: 2em 2rem 0 2rem;
+}
+
+.element-container {
+  width: 23%;
+  max-width: 370px;
+  min-width: 290px;
+  display: flex;
+  flex-direction: column;
+}
+
+.list-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 3px solid var(--color--border);
+  padding: 1rem 0.5rem;
+  background-color: var(--color--primary);
+  margin-bottom: 1rem;
+}
+
+.icon {
+  width: 25px;
+}
+
+.plus-icon {
+  cursor: pointer;
+}
+
+.icon-button {
+  height: 25px;
+  padding: 0;
+  margin: 0;
+  border: none;
+}
+
+.edit-input {
+  min-width: 170px;
+  max-width: 320px;
+}
+
+.display-list-items {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.card-block {
+  margin-bottom: 1rem;
+  background-color: var(--color--primary);
+}
+
+.card-container {
+  width: 98%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.card-container button{
+  width: 85%;
+  text-align: left;
+  padding: 0.6rem 0.2rem;
+}
+
+.card-container span {
+  padding: 0.6rem 0.4rem;
+  cursor: pointer;
+}
+
+.add-card-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 0.5rem;
+}
+
+.card-modal {
+  background-color: var(--color--primary);
+  position: absolute;
+  padding: 1.5rem 2rem 2rem 2rem;
+  width: 30%;
+  left: 40%;
+  top: 15%;
+}
+
+.card-modal-detail {
+  padding: 1rem 0.5rem;
+}
+
+.card-modal-details {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 1rem;
+}
+
+.close-modal {
+  padding: 0.5rem;
+  color: white;
+  background-color: #ff2600;
+}
+
+.card-modal-info {
+  margin-bottom: 1rem;
+}
+
+.title-modal-card {
+  width: 70%;
+  background-color: #FFF;
+  padding: 0.6rem 0.5rem;
+}
+
+.modal-update-input {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0.5rem;
+}

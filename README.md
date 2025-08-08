@@ -1,15 +1,17 @@
-# React + TypeScript + Vite
+# wipflow
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Application de gestion de workflow développée avec React + TypeScript + Vite.
 
-Currently, two official plugins are available:
+## Technologies utilisées
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- React
+- TypeScript
+- Vite
+- ESLint
 
-## Expanding the ESLint configuration
+## Configuration ESLint
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Si vous développez une application de production, nous recommandons de mettre à jour la configuration pour activer les règles de linting basées sur les types :
 
 ```js
 export default tseslint.config({
@@ -31,7 +33,7 @@ export default tseslint.config({
 })
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Vous pouvez également installer [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) et [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) pour les règles de linting spécifiques à React :
 
 ```js
 // eslint.config.js
@@ -51,4 +53,16 @@ export default tseslint.config({
     ...reactDom.configs.recommended.rules,
   },
 })
+```
+
+## Icônes utilisées
+
+### Crayon
+```html
+<div> Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik"> Freepik </a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com'</a></div>
+```
+
+### Plus
+```html
+<div> Icons made by <a href="https://www.flaticon.com/authors/md-tanvirul-haque" title="Md Tanvirul Haque"> Md Tanvirul Haque </a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com'</a></div>
 ```
