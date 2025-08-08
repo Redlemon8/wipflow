@@ -11,6 +11,7 @@ interface ListProps {
   onUpdateCard: (id: number, content: string, color: string) => Promise<void>;
   onDeleteCard: (id: number) => Promise<void>;
   onRefreshList?: () => void;
+  onRefreshCardData?: (cardId: number) => Promise<void>;
 }
 
 export function List({ 
@@ -20,15 +21,12 @@ export function List({
   onDeleteList, 
   onUpdateCard, 
   onDeleteCard,
-  onRefreshList
+  onRefreshList,
+  onRefreshCardData
 }: ListProps) {
   const hasCards = list.cards && list.cards.length > 0;
 
-  const handleRefreshList = () => {
-    if (onRefreshList) {
-      onRefreshList();
-    }
-  };
+
 
   return (
     <section className='element-container'>
@@ -67,7 +65,7 @@ export function List({
                 card={card} 
                 onUpdateCard={onUpdateCard} 
                 onDeleteCard={onDeleteCard}
-                onRefreshCard={handleRefreshList}
+                onRefreshCard={onRefreshCardData ? () => onRefreshCardData(card.id) : undefined}
               />
             ))}
           </section>

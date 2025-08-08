@@ -9,6 +9,7 @@ export interface ListsProps {
   onUpdateCard: (id: number, content: string, color: string) => Promise<void>;
   onDeleteCard: (id: number) => Promise<void>;
   onRefreshLists?: () => void;
+  onRefreshCardData?: (cardId: number) => Promise<void>;
 }
 
 export function Lists({ 
@@ -18,7 +19,8 @@ export function Lists({
   onDeleteList, 
   onUpdateCard, 
   onDeleteCard,
-  onRefreshLists
+  onRefreshLists,
+  onRefreshCardData
 }: ListsProps) {
   const handleRefreshLists = () => {
     if (onRefreshLists) {
@@ -38,6 +40,7 @@ export function Lists({
           onUpdateCard={onUpdateCard} 
           onDeleteCard={onDeleteCard}
           onRefreshList={handleRefreshLists}
+          onRefreshCardData={onRefreshCardData}
         />
       ))}
     </>

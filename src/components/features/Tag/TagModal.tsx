@@ -50,6 +50,9 @@ export function TagModal({ card, onTagChange }: TagModalProps) {
       if (success && onTagChange) {
         onTagChange();
       }
+      
+      // La modal reste ouverte après la sélection
+      // setIsOpen reste à true
     } catch (error) {
       console.error("Erreur lors de la modification du tag:", error);
     }

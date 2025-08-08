@@ -24,6 +24,8 @@ export function Card({ card, onUpdateCard, onDeleteCard, onRefreshCard }: ICardP
     if (onRefreshCard) {
       onRefreshCard();
     }
+    // La modal reste ouverte après le rafraîchissement
+    // setIsModalOpen reste à true
   };
 
   return (
@@ -37,7 +39,14 @@ export function Card({ card, onUpdateCard, onDeleteCard, onRefreshCard }: ICardP
           {card.content}
         </button>
         <div className="card-tags">
-            <span style={{backgroundColor: card.tags[0].color}} aria-label={card.tags[0].name}></span>
+          {card.tags && card.tags.length > 0 && card.tags[0] && (
+            <span 
+              style={{backgroundColor: card.tags[0].color}} 
+              aria-label={card.tags[0].name}
+              className="card-tag-indicator"
+            >
+            </span>
+          )}
         </div>
         <span 
           onClick={handleOpenModal}

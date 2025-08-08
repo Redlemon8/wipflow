@@ -198,6 +198,21 @@ export function useListsAndCards() {
     }
   };
 
+  // Rafraîchir les données d'une carte spécifique (pour les tags)
+  const refreshCardData = async (cardId: number): Promise<void> => {
+    try {
+      const newLists = await getLits();
+      const listsWithCards = newLists.map(list => ({
+        ...list,
+        cards: list.cards || []
+      }));
+      
+      setLists(listsWithCards);
+    } catch (err) {
+      console.error('Erreur lors du rafraîchissement des données de la carte:', err);
+    }
+  };
+
   return { 
     lists, 
     loading, 
@@ -208,6 +223,7 @@ export function useListsAndCards() {
     handleDeleteList, 
     handleUpdateCard, 
     handleDeleteCard,
-    refreshData: loadData
+    refreshData: loadData,
+    refreshCardData
   };
 } 

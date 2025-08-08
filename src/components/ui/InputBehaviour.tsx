@@ -101,7 +101,7 @@ export function InputBehaviour({
           </div>
         )}
         <button className={buttonClassName} onClick={handleClickAdd}>
-          {editMode ? 'Enregistrer' : 
+          {editMode ? '' : 
             showIcon ? <img className="icon plus-icon" src={plus} alt="Icon pour ajouter un élément"/> : 'Ajouter'}
         </button>
       </>
