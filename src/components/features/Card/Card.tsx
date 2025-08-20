@@ -2,7 +2,7 @@ import { useState } from "react";
 import type { ICard } from "../../../@types";
 import { CardModal } from "./CardModal";
 
-interface ICardProps {
+export interface ICardProps {
   card: ICard;
   onUpdateCard: (id: number, content: string, color: string) => Promise<void>;
   onDeleteCard: (id: number) => Promise<void>;

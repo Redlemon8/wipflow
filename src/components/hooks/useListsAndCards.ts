@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { IList } from '../../@types';
 import { 
   addListIntoApi, 
@@ -9,19 +9,21 @@ import {
   updateCardIntoApi, 
   deleteCardIntoApi
 } from '../../api';
+import { useAuth } from '../../hooks/useAuth';
 
-export function useListsAndCards() {
+export function useListsAndCards(projectId: number) {
   const [lists, setLists] = useState<IList[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const { isAuthenticated, isLoading: authLoading } = useAuth();
 
   // Charger les données initiales
-  const loadData = async () => {
+  const loadData = useCallback(async () => {
     setLoading(true);
     setError(null);
     
     try {
-      const newLists = await getLits();
+      const newLists = await getLits(projectId);
       const listsWithCards = newLists.map(list => ({
         ...list,
         cards: list.cards || []
@@ -33,22 +35,26 @@ export function useListsAndCards() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [projectId]);
 
   useEffect(() => {
-    loadData();
-  }, []);
+    // Ne charge les données que si l'utilisateur est authentifié et que l'auth n'est pas en cours de chargement
+    if (isAuthenticated && !authLoading) {
+      loadData();
+    }
+  }, [isAuthenticated, authLoading, loadData]);
 
   // Ajouter une liste
   const handleAddList = async (title: string): Promise<void> => {
     if (!title.trim()) return;
+    
     
     setLoading(true);
     setError(null);
     
     try {
       const position = lists.length + 1;
-      const newList = await addListIntoApi(title, position);
+      const newList = await addListIntoApi(title, position, projectId);
       
       if (newList) {
         const listWithCards = {
@@ -107,7 +113,7 @@ export function useListsAndCards() {
       const listToUpdate = lists.find(list => list.id === id);
       if (!listToUpdate) return;
 
-      const result = await updateListIntoApi(newTitle, listToUpdate.id);
+      const result = await updateListIntoApi(newTitle, listToUpdate.id, projectId);
       
       if (result) {
         setLists(lists.map(list =>
@@ -131,7 +137,7 @@ export function useListsAndCards() {
       const listToDelete = lists.find(list => list.id === id);
       if (!listToDelete) return;
    
-      const result = await deleteListIntoApi(listToDelete);
+      const result = await deleteListIntoApi(listToDelete, projectId);
       
       if (result) {
         setLists(lists.filter(list => list.id !== id));
@@ -199,9 +205,9 @@ export function useListsAndCards() {
   };
 
   // Rafraîchir les données d'une carte spécifique (pour les tags)
-  const refreshCardData = async (cardId: number): Promise<void> => {
+  const refreshCardData = async (_cardId: number): Promise<void> => {
     try {
-      const newLists = await getLits();
+      const newLists = await getLits(projectId);
       const listsWithCards = newLists.map(list => ({
         ...list,
         cards: list.cards || []

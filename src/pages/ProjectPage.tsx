@@ -1,6 +1,10 @@
+import { useParams } from 'react-router-dom';
 import { Lists, useListsAndCards, InputBehaviour } from '../components';
 
 export function ProjectPage() {
+  const { id } = useParams<{ id: string }>();
+  const projectId = parseInt(id || '1', 10);
+  
   const { 
     lists, 
     loading, 
@@ -13,7 +17,7 @@ export function ProjectPage() {
     handleDeleteCard,
     refreshData,
     refreshCardData
-  } = useListsAndCards();
+  } = useListsAndCards(projectId);
 
   if (loading) {
     return <div>Chargement...</div>;

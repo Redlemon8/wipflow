@@ -21,7 +21,7 @@ export function List({
   onDeleteList, 
   onUpdateCard, 
   onDeleteCard,
-  onRefreshList,
+  onRefreshList: _onRefreshList,
   onRefreshCardData
 }: ListProps) {
   const hasCards = list.cards && list.cards.length > 0;
